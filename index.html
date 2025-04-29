@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,12 @@
     <link rel="icon" type="image/png" href="icons/icon-192x192.png">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pangolin&family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pangolin&family=Saira:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -61,18 +65,13 @@
                         </tr>
                     </thead>
                     <tbody id="contacts-body">
-                        
+
                     </tbody>
                 </table>
             </div>
             <div id="no-contacts-message">No contacts added yet.</div>
         </section>
     </div>
-
-    <div id="offline-notification" class="hidden">
-        You are currently offline. The app will continue to work, and changes will be saved locally.
-    </div>
-
     <script src="script.js"></script>
     <script>
         // Register service worker
@@ -87,22 +86,7 @@
                     });
             });
         }
-
-        // Offline detection
-        window.addEventListener('online', updateOnlineStatus);
-        window.addEventListener('offline', updateOnlineStatus);
-
-        function updateOnlineStatus() {
-            const notification = document.getElementById('offline-notification');
-            if (navigator.onLine) {
-                notification.classList.add('hidden');
-            } else {
-                notification.classList.remove('hidden');
-            }
-        }
-
-        // Check initial status
-        updateOnlineStatus();
     </script>
 </body>
+
 </html>
