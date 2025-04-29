@@ -35,10 +35,12 @@ function loadContactsFromStorage() {
     }
 }
 
+//array to JSON
 function saveContactsToStorage() {
     localStorage.setItem('contacts', JSON.stringify(contactsList));
 }
 
+//  creates a contact object and pushes it to the array
 function createContact() {
     const newContact = {
         id: Date.now(),
@@ -65,7 +67,7 @@ function showNewContact(contact) {
     contactsBody.appendChild(row);
 }
 
-// create a table row for contact
+// creates a row and attach delete 
 function makeContactRow(contact) {
     const row = document.createElement('tr');
     row.dataset.id = contact.id;
@@ -80,7 +82,7 @@ function makeContactRow(contact) {
         </td>
     `;
     
-    //  delete button clicked
+    //  delete button clicking listener
     const deleteButton = row.querySelector('.delete-btn');
     deleteButton.addEventListener('click', function() {
         deleteContact(contact.id);
