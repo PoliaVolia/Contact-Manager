@@ -26,7 +26,7 @@ self.addEventListener('install', event => {
   );
 });
 
-// Activate event - clean up old caches
+// clean up old caches
 self.addEventListener('activate', event => {
   const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
@@ -42,12 +42,11 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch event - serve from cache, fall back to network
+//fetch
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Cache hit - return response
         if (response) {
           return response;
         }
@@ -57,12 +56,12 @@ self.addEventListener('fetch', event => {
 
         return fetch(fetchRequest).then(
           response => {
-            // Check if we received a valid response
+            // Check if we received valid response
             if (!response || response.status !== 200 || response.type !== 'basic') {
               return response;
             }
 
-            // Clone the response because it's a one-time use stream
+            // Clone the response because it's a one time use stream
             const responseToCache = response.clone();
 
             caches.open(CACHE_NAME)
